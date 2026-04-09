@@ -18,7 +18,7 @@ const partners = [
 
 export default function Hero() {
   return (
-    <section className="relative pt-20 bg-white overflow-hidden">
+    <section className="relative pt-36 sm:pt-44 bg-white overflow-hidden">
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh] py-12">
@@ -116,6 +116,7 @@ export default function Hero() {
                       src="/constructions/service-1.png"
                       alt="Construction Work"
                       fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
                       className="object-cover"
                       priority
                     />
@@ -125,6 +126,7 @@ export default function Hero() {
                       src="/facility-management/service-1.png"
                       alt="MEP Services"
                       fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
                       className="object-cover"
                     />
                   </div>
@@ -135,6 +137,7 @@ export default function Hero() {
                       src="/constructions/service-2.png"
                       alt="Civil Construction"
                       fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
                       className="object-cover"
                     />
                   </div>
@@ -145,7 +148,7 @@ export default function Hero() {
                         alt="SAMA"
                         width={60}
                         height={60}
-                        className="mx-auto mb-3 brightness-0 invert"
+                        className="mx-auto mb-3 brightness-0 invert w-auto h-auto"
                       />
                       <p className="font-bold text-lg">Vision 2030</p>
                       <p className="text-blue-200 text-sm">Partner</p>

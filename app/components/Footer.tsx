@@ -13,7 +13,7 @@ export default function Footer() {
                 alt="SAMA Service Company"
                 width={48}
                 height={48}
-                className="w-12 h-12 brightness-0 invert"
+                className="w-12 h-12 min-w-[48px] brightness-0 invert"
               />
               <div>
                 <p className="font-semibold text-lg">SAMA Service Company LTD</p>
