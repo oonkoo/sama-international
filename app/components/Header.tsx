@@ -46,7 +46,7 @@ export default function Header() {
                 width={120}
                 height={120}
                 className={`relative transition-all duration-300 ${
-                  scrolled ? "w-16 h-16" : "w-28 h-28 sm:w-32 sm:h-32"
+                  scrolled ? "w-32 h-32" : "w-32 h-32 sm:w-32 sm:h-32"
                 }`}
                 priority
               />
