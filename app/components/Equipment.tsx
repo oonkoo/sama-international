@@ -1,142 +1,226 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const equipmentCategories = [
   {
     title: "Earthmoving Equipment",
     items: ["Excavators", "Bulldozers", "Graders", "Backhoe Loaders"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-        />
-      </svg>
-    ),
+    count: "25+",
   },
   {
     title: "Concrete Works",
     items: ["Batching Plants", "Concrete Pumps", "Mixers", "Vibrators"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-        />
-      </svg>
-    ),
+    count: "15+",
   },
   {
     title: "Lifting Equipment",
-    items: ["Mobile Cranes", "Forklifts", "Hoisting Systems"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-        />
-      </svg>
-    ),
+    items: ["Mobile Cranes", "Forklifts", "Hoisting Systems", "Tower Cranes"],
+    count: "20+",
   },
   {
     title: "Transportation Fleet",
-    items: ["Dump Trucks", "Flatbed Trailers", "Service Vehicles"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-        />
-      </svg>
-    ),
+    items: ["Dump Trucks", "Flatbed Trailers", "Service Vehicles", "Tankers"],
+    count: "40+",
   },
   {
     title: "MEP Tools",
-    items: ["Electrical Testing", "HVAC Installation", "Plumbing Equipment"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-        />
-      </svg>
-    ),
+    items: ["Electrical Testing", "HVAC Tools", "Plumbing Equipment", "Welding Sets"],
+    count: "50+",
   },
   {
     title: "Support Equipment",
     items: ["Generators", "Compressors", "Scaffolding", "Site Offices"],
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-        />
-      </svg>
-    ),
+    count: "30+",
   },
 ];
 
-export default function Equipment() {
+function AnimatedCounter({ value, duration = 2000 }: { value: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const numericValue = parseInt(value.replace(/\D/g, ""));
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          let start = 0;
+          const increment = numericValue / (duration / 16);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= numericValue) {
+              setCount(numericValue);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [numericValue, duration]);
+
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+    <span ref={ref}>
+      {count}
+      {value.includes("+") && "+"}
+    </span>
+  );
+}
+
+export default function Equipment() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <section className="py-24 bg-[#fafbfc]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="max-w-3xl mb-16">
           <span className="text-[#d4a853] font-semibold text-sm uppercase tracking-wider">
             Our Capabilities
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a365d] mt-2 mb-4">
             Equipment & Resources
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Modern fleet and skilled workforce to execute projects of all sizes
+          <p className="text-gray-600">
+            A comprehensive fleet of modern construction equipment and skilled personnel,
+            maintained to the highest standards to ensure reliable project delivery.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {equipmentCategories.map((category) => (
+        {/* Equipment Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 rounded-2xl overflow-hidden">
+          {equipmentCategories.map((category, index) => (
             <div
               key={category.title}
-              className="bg-[#fafbfc] rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all"
+              className="bg-white p-8 relative group cursor-default"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              style={{
+                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                backgroundColor: hoveredIndex === index ? "#fafbfc" : "white",
+              }}
             >
-              <div className="w-12 h-12 bg-[#1a365d] rounded-lg flex items-center justify-center mb-4 text-white">
-                {category.icon}
+              {/* Number badge */}
+              <div className="flex items-start justify-between mb-6">
+                <span className="text-4xl font-bold text-[#1a365d]/10">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div
+                  className="px-3 py-1.5 rounded text-sm font-semibold transition-all duration-300"
+                  style={{
+                    backgroundColor: hoveredIndex === index ? "#1a365d" : "#1a365d10",
+                    color: hoveredIndex === index ? "white" : "#1a365d",
+                  }}
+                >
+                  {category.count} Units
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-3">{category.title}</h3>
-              <ul className="text-gray-600 text-sm space-y-1">
-                {category.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#d4a853] rounded-full"></span>
+
+              {/* Title */}
+              <h3
+                className="text-xl font-bold mb-4 transition-colors duration-300"
+                style={{
+                  color: hoveredIndex === index ? "#1a365d" : "#374151",
+                }}
+              >
+                {category.title}
+              </h3>
+
+              {/* Items */}
+              <ul className="space-y-2">
+                {category.items.map((item, itemIndex) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-gray-600 text-sm transition-all duration-300"
+                    style={{
+                      transform: hoveredIndex === index ? "translateX(4px)" : "translateX(0)",
+                      transitionDelay: `${itemIndex * 50}ms`,
+                    }}
+                  >
+                    <span
+                      className="w-1 h-1 rounded-full transition-all duration-300"
+                      style={{
+                        backgroundColor: hoveredIndex === index ? "#d4a853" : "#9CA3AF",
+                        transform: hoveredIndex === index ? "scale(1.5)" : "scale(1)",
+                      }}
+                    />
                     {item}
                   </li>
                 ))}
               </ul>
+
+              {/* Bottom accent line */}
+              <div
+                className="absolute bottom-0 left-0 h-0.5 bg-[#d4a853] transition-all duration-500"
+                style={{
+                  width: hoveredIndex === index ? "100%" : "0%",
+                }}
+              />
             </div>
           ))}
         </div>
 
-        {/* Workforce Note */}
-        <div className="mt-12 bg-gradient-to-r from-[#1a365d] to-[#2d4a7c] rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-2">Skilled Workforce</h3>
-          <p className="text-blue-100 max-w-2xl mx-auto">
-            Our team includes experienced engineers, project managers, certified operators, and
-            skilled technicians who undergo continuous training in construction quality, safety, and
-            technical excellence.
-          </p>
+        {/* Stats Row */}
+        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { value: "180+", label: "Total Equipment Units" },
+            { value: "200+", label: "Skilled Personnel" },
+            { value: "99%", label: "Equipment Uptime" },
+            { value: "24/7", label: "Maintenance Support" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="text-4xl font-bold text-[#1a365d] mb-1">
+                {stat.value === "24/7" ? stat.value : <AnimatedCounter value={stat.value} />}
+              </p>
+              <p className="text-gray-500 text-sm">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Workforce Section */}
+        <div className="mt-16 bg-white border border-gray-200 rounded-2xl p-8 lg:p-10">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+            {/* Left content */}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#1a365d] rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#d4a853]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#1a365d]">Professional Workforce</h3>
+              </div>
+              <p className="text-gray-600 leading-relaxed">
+                Our team comprises experienced engineers, certified project managers, licensed equipment operators,
+                and skilled technicians. Every team member undergoes continuous professional development
+                in construction quality standards, safety protocols, and technical excellence.
+              </p>
+            </div>
+
+            {/* Right stats */}
+            <div className="flex gap-8 lg:gap-12 flex-shrink-0">
+              <div className="text-center">
+                <p className="text-3xl font-bold text-[#1a365d]">50+</p>
+                <p className="text-gray-500 text-sm">Engineers</p>
+              </div>
+              <div className="w-px bg-gray-200" />
+              <div className="text-center">
+                <p className="text-3xl font-bold text-[#1a365d]">30+</p>
+                <p className="text-gray-500 text-sm">Operators</p>
+              </div>
+              <div className="w-px bg-gray-200" />
+              <div className="text-center">
+                <p className="text-3xl font-bold text-[#1a365d]">120+</p>
+                <p className="text-gray-500 text-sm">Technicians</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

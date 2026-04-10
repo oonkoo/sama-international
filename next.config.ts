@@ -11,6 +11,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "plus.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "logo.clearbit.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.brandfetch.io",
+      },
+      {
+        protocol: "https",
+        hostname: "asset.brandfetch.io",
+      },
     ],
   },
 };
