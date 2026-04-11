@@ -150,12 +150,15 @@ export default function Footer() {
 
           {/* Vision 2030 */}
           <div className="lg:col-span-2">
-            <div className="bg-gradient-to-br from-[#059669]/20 to-[#059669]/5 rounded-2xl p-6 border border-[#059669]/20">
-              <div className="w-12 h-12 bg-[#059669] rounded-xl flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-sm">2030</span>
-              </div>
-              <p className="font-semibold text-white mb-1">Vision 2030</p>
-              <p className="text-gray-400 text-sm">Partner in national development</p>
+            <div className="bg-white rounded-2xl p-6 flex flex-col items-center justify-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png"
+                alt="Saudi Vision 2030"
+                width={120}
+                height={70}
+                className="w-auto h-16 mb-3"
+              />
+              <p className="text-[#1a365d] text-sm font-medium text-center">Partner in National Development</p>
             </div>
           </div>
         </div>

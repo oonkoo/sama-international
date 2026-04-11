@@ -54,8 +54,14 @@ export default function About() {
                       <p className="text-white/50 text-sm">Est. 2019 • Jeddah, KSA</p>
                     </div>
                   </div>
-                  <div className="px-4 py-2 bg-[#d4a853] rounded-full hidden sm:block">
-                    <p className="text-[#1a365d] font-bold text-sm">Vision 2030</p>
+                  <div className="px-3 py-2 bg-white rounded-xl hidden sm:block">
+                    <Image
+                      src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png"
+                      alt="Saudi Vision 2030"
+                      width={80}
+                      height={40}
+                      className="w-auto h-8"
+                    />
                   </div>
                 </div>
 

@@ -76,7 +76,7 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-12">
+            <div className="flex flex-wrap flex-col md:flex-row gap-4 mb-12">
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 bg-[#d4a853] text-[#1a365d] px-6 py-3.5 rounded-lg text-base font-semibold hover:bg-[#e8c878] transition-colors shadow-lg shadow-[#d4a853]/20"
@@ -159,17 +159,16 @@ export default function Hero() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#1a365d] to-[#2d4a7c] flex items-center justify-center p-6">
-                    <div className="text-center text-white">
+                  <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg bg-white flex items-center justify-center p-6">
+                    <div className="text-center">
                       <Image
-                        src="/sama-logo.svg"
-                        alt="SAMA"
-                        width={60}
-                        height={60}
-                        className="mx-auto mb-3 brightness-0 invert w-auto h-auto"
+                        src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png"
+                        alt="Saudi Vision 2030"
+                        width={140}
+                        height={80}
+                        className="mx-auto w-auto h-auto"
                       />
-                      <p className="font-bold text-lg">Vision 2030</p>
-                      <p className="text-blue-200 text-sm">Partner</p>
+                      <p className="text-[#1a365d] text-sm font-medium mt-2">Partner</p>
                     </div>
                   </div>
                 </div>

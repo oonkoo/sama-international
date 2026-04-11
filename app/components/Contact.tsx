@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-[#fafbfc] relative overflow-hidden">
@@ -77,11 +79,17 @@ export default function Contact() {
                 {/* Vision 2030 Badge */}
                 <div className="mt-8 pt-6 border-t border-white/10">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-[#059669] rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold">2030</span>
+                    <div className="bg-white rounded-xl p-2">
+                      <Image
+                        src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png"
+                        alt="Saudi Vision 2030"
+                        width={80}
+                        height={45}
+                        className="w-auto h-10"
+                      />
                     </div>
                     <div>
-                      <p className="font-semibold text-white">Vision 2030 Partner</p>
+                      <p className="font-semibold text-white">Partner</p>
                       <p className="text-white/60 text-sm">Contributing to national development</p>
                     </div>
                   </div>
