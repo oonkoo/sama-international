@@ -47,7 +47,7 @@ export default function Hero() {
             </h1>
 
             {/* Arabic Name */}
-            <p className="text-xl text-[#d4a853] font-semibold mb-4" dir="rtl">
+            <p className="text-2xl md:text-6xl text-[#d4a853] font-semibold mb-4" dir="rtl">
               شركة سما سيرفيس المحدودة
             </p>
 
