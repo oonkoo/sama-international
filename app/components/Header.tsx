@@ -27,7 +27,7 @@ export default function Header() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg py-3"
+            ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
             : "bg-transparent py-6"
         }`}
       >
@@ -37,7 +37,7 @@ export default function Header() {
             <a href="#" className="relative group">
               <div
                 className={`absolute inset-0 bg-[#d4a853]/20 rounded-full blur-xl group-hover:bg-[#d4a853]/30 transition-all ${
-                  scrolled ? "scale-75" : "scale-100"
+                  scrolled ? "scale-50" : "scale-100"
                 }`}
               ></div>
               <Image
@@ -46,7 +46,7 @@ export default function Header() {
                 width={120}
                 height={120}
                 className={`relative transition-all duration-300 ${
-                  scrolled ? "w-32 h-32" : "w-32 h-32 sm:w-32 sm:h-32"
+                  scrolled ? "w-32 h-auto" : "w-32 h-auto sm:w-32 sm:h-auto"
                 }`}
                 priority
               />

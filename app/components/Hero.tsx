@@ -8,17 +8,35 @@ const stats = [
 ];
 
 const partners = [
-  "NEOM",
-  "Saudi Aramco",
-  "Red Sea Global",
-  "SABIC",
-  "Nesma & Partners",
-  "Tamimi Global",
+  {
+    name: "NEOM",
+    logo: "https://www.freelogovectors.net/wp-content/uploads/2021/05/neom-logo-freelogovectors.net_.png",
+  },
+  {
+    name: "Saudi Aramco",
+    logo: "https://esc.uk.net/wp-content/uploads/2018/09/aramco-og-logo.png",
+  },
+  {
+    name: "Red Sea Global",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Red_Sea_Global_Logo.svg/1280px-Red_Sea_Global_Logo.svg.png",
+  },
+  {
+    name: "SABIC",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2pKsr3h583zFxoHoR3yoXiZm3lK39j81Sg&s",
+  },
+  {
+    name: "Nesma & Partners",
+    logo: "https://alturkiholding.com/media/jntajpnz/nesma.png",
+  },
+  {
+    name: "Tamimi Global",
+    logo: "https://tamimiglobal.com/wp-content/uploads/2015/08/LOGO.png",
+  },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative pt-36 sm:pt-44 bg-white overflow-hidden">
+    <section className="relative pt-16 bg-white overflow-hidden">
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh] py-12">
@@ -193,12 +211,15 @@ export default function Hero() {
             <p className="text-gray-500 text-sm font-medium whitespace-nowrap">Trusted by:</p>
             <div className="flex flex-wrap justify-center sm:justify-start items-center gap-8 sm:gap-12">
               {partners.map((partner) => (
-                <span
-                  key={partner}
-                  className="text-gray-400 font-semibold text-sm sm:text-base hover:text-[#1a365d] transition-colors cursor-default"
-                >
-                  {partner}
-                </span>
+                <div key={partner.name} className="group relative h-6 sm:h-8 w-20 sm:w-24">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    fill
+                    sizes="96px"
+                    className="object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
               ))}
             </div>
           </div>
